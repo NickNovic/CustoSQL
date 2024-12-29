@@ -2,7 +2,7 @@
 
 ## Tasks for current sprint
 - [ ] Implement primitive types
-    - [ ] int(SqlInt)
+    - [x] int(SqlInt)
     - [ ] float  (SqlFloat)
     - [ ] char  (SqlChar) 
     - [ ] string  (SqlString) 

@@ -12,10 +12,10 @@
     /*
     * Base type for all primitive types
     */
-    class Primitive{
+    class SqlPrimitive{
         public:
             // virtual PrimitiveType(std::vector<std::byte> bytes);
-            virtual ~Primitive() = 0;
+            virtual ~SqlPrimitive() = 0;
             /*
             * Returns byte representation of the type
             */
@@ -32,7 +32,7 @@
     * First byte contains sign and others are used for storing the value.
     * Value 00000000 is equal to 0.
     */
-    class SqlInt : public Primitive{
+    class SqlInt : public SqlPrimitive{
         private:
             // size of type in bits
             static const int size = 32;
@@ -85,7 +85,7 @@
     * It's size is  and it supports all of standart operations like +, -, *, / etc.
     * Inside it contains a common fraction
     */
-    class SqlFloat : public Primitive{
+    class SqlFloat : public SqlPrimitive{
         private:
             SqlInt solid;
             SqlInt numerator;

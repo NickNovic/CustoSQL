@@ -2,6 +2,4 @@
 file(GLOB PRIMITIVETYPES_SOURCES "*.cpp")
 
 # Create a library for PrimitiveTypes
-add_library(PrimitiveTypes ${PRIMITIVETYPES_SOURCES})
-
-target_link_libraries(PrimitiveTypes Helpers)
+add_library(Helpers ${PRIMITIVETYPES_SOURCES})

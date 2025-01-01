@@ -2,6 +2,8 @@
 #include <cstddef>
 #include <stdexcept>
 #include <cmath>
+#include <vector>
+#include "../Helpers/ByteNumberHelper.hpp"
 
 // Helper static functions
 SqlInt SqlInt::binarySumm(bool sign, SqlInt a, SqlInt b){
@@ -10,17 +12,23 @@ SqlInt SqlInt::binarySumm(bool sign, SqlInt a, SqlInt b){
     result[signBit] = sign;
 
     int carry = 0;
-    
-    for(int i = size - 1; i > 0; i--){
 
-        bool bit1 = a.bits[i];
-        bool bit2 = b.bits[i];
-        result[i] = (bit1 ^ bit2 ^ carry);
-        carry = (bit1 & bit2) | (carry & (bit1 ^ bit2));
+    // Converting to unsigned numbers in vector<bool> form
+    vector<bool> boolA(size - 1);
+    for(int i = signBit + 1; i < size; i++){
+        boolA[i - 1] = a.bits[i];
     }
 
-    if(carry != 0){
-        throw runtime_error("Summ overflow");
+    vector<bool> boolB(size - 1);
+    for(int i = signBit + 1; i < size; i++){
+        boolB[i - 1] = b.bits[i];
+
+    }
+
+    // Converting back binary to bitset form
+    vector<bool> boolResult = summ(boolA, boolB);
+    for(int i = signBit + 1; i < size; i++){
+        result[i] = boolResult[i - 1];
     }
 
     return SqlInt(result);

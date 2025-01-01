@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Add subdirectories for Domain/PrimitiveTypes
 add_subdirectory(src/Domain/PrimitiveTypes)
+add_subdirectory(src/Domain/Helpers)
 
 # Main executable
 add_executable(CustoSQL src/main.cpp)
